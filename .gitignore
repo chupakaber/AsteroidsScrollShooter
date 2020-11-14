@@ -1,0 +1,10 @@
+*.csproj
+*.sln
+[Ll]ogs
+[Ll]ibrary
+[Oo]bj
+[Tt]emp
+[Bb]uild
+.vscode
+.idea
+.vs
