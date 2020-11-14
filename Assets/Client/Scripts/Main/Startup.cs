@@ -31,21 +31,17 @@ namespace Client.Main
             };
             _shipInfo.WeaponShootingFrequency = WeaponShootingFrequency;
             _shipInfo.Position.Value = new Vector3(0f, 0f, 0f);
+            _shipInfo.Active = true;
 
             _levelInfo = PersistentState.Get().CurrentLevelInfo;
 
             LevelGenerator.GenerateAsteroids(_levelInfo, out _asteroids);
 
             await System.Threading.Tasks.Task.Yield();
-            Debug.Log("StartInitializing");
             MessageBroker.Default.Publish(SharedMessage.Create(this, SharedMessage.MessageType.INIT_PLAYER, _playerInfo));
-            Debug.Log("InitPlayer");
             MessageBroker.Default.Publish(SharedMessage.Create(this, SharedMessage.MessageType.INIT_LEVEL, _levelInfo));
-            Debug.Log("InitLevel");
             MessageBroker.Default.Publish(SharedMessage.Create(this, SharedMessage.MessageType.INIT_ASTEROIDS, _asteroids));
-            Debug.Log("InitAsteroids");
             MessageBroker.Default.Publish(SharedMessage.Create(this, SharedMessage.MessageType.INIT_SHIP, _shipInfo));
-            Debug.Log("InitShip");
         }
     }
 }

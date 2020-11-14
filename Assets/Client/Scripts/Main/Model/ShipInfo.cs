@@ -13,6 +13,7 @@ namespace Client.Main
         public Vector3[] WeaponPlaces = null;
         public float Speed = 0f;
         public float Distance = 0f;
+        public bool Active = false;
 
         public ShipInfo()
         {

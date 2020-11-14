@@ -51,7 +51,7 @@ namespace Client.Main
 
         void Shoot()
         {
-            if (_shipInfo.WeaponLastShotTime.Value + 1f / _shipInfo.WeaponShootingFrequency < Time.time)
+            if (_shipInfo.Active && (_shipInfo.WeaponLastShotTime.Value + 1f / _shipInfo.WeaponShootingFrequency < Time.time))
             {
                 _shipInfo.WeaponLastShotPlace++;
                 if (_shipInfo.WeaponLastShotPlace >= _shipInfo.WeaponPlaces.Length)

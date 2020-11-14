@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 
@@ -32,6 +31,17 @@ namespace Client.Main
             .Where(msg => msg.Type == SharedMessage.MessageType.SHOOT)
             .Subscribe(msg => {
                 Shoot();
+            }).AddTo(_disposables);
+
+            MessageBroker.Default
+            .Receive<SharedMessage>()
+            .Where(msg => msg.Type == SharedMessage.MessageType.GAME_OVER)
+            .Subscribe(msg => {
+                var success = (bool) msg.Context;
+                if (!success)
+                {
+                    _shipInfo.Active = false;
+                }
             }).AddTo(_disposables);
         }
 

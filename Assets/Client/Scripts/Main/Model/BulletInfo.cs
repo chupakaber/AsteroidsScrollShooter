@@ -1,4 +1,3 @@
-using UniRx;
 using UnityEngine;
 
 namespace Client.Main
