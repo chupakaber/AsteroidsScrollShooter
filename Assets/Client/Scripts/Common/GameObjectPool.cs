@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Client.Common
 {
-    public class GameObjectPool<T>
+    public class GameObjectPool<T> where T : Component
     {
-        GameObject _prefab = null;
+        T _prefab;
         Queue<T> _storedObjects = null;
 
-        public GameObjectPool(GameObject prefab)
+        public GameObjectPool(T prefab)
         {
             _prefab = prefab;
             _storedObjects = new Queue<T>();
@@ -17,10 +17,13 @@ namespace Client.Common
         public T Get(Transform container)
         {
             if (_storedObjects.Count > 0)
-                return _storedObjects.Dequeue();
+            {
+                var obj = _storedObjects.Dequeue();
+                obj.transform.SetParent(container);
+                return obj;
+            }
             
-            var obj = GameObject.Instantiate<GameObject>(_prefab, container).GetComponent<T>();
-            return obj;
+            return GameObject.Instantiate<T>(_prefab, container);
         }
 
         public void Put(T obj)

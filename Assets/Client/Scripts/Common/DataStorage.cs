@@ -38,7 +38,7 @@ namespace Client.Common
 
         static string GetPath<T>(T data)
         {
-            return $"{UnityEngine.Application.temporaryCachePath}/storage.{data.GetType().Name}.dat";
+            return $"{UnityEngine.Application.persistentDataPath}/storage.{data.GetType().Name}.dat";
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Client.Main
 
         void OnEnable()
         {
-            _explosionPool = new GameObjectPool<Transform>(_explosionPrefab);
+            _explosionPool = new GameObjectPool<Transform>(_explosionPrefab.transform);
 
             MessageBroker.Default
             .Receive<SharedMessage>()

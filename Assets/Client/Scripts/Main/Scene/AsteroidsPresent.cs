@@ -15,7 +15,7 @@ namespace Client.Main
 
         void OnEnable()
         {
-            _asteroidsPool = new GameObjectPool<Transform>(_asteroidPrefab);
+            _asteroidsPool = new GameObjectPool<Transform>(_asteroidPrefab.transform);
             _activeAsteroids = new List<Transform>();
 
             MessageBroker.Default
